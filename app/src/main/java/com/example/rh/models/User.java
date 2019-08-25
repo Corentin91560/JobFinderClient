@@ -1,26 +1,44 @@
 package com.example.rh.models;
 
-public class User {
-    int idUser;
-    String name;
-    String firstname;
-    String email;
-    String password;
-    String phone;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public User(int idUser,String name, String firstname, String email, String password, String phone) {
-        this.name = name;
-        this.firstname = firstname;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
+public class User {
+    @SerializedName("idcandidat")
+    @Expose
+    int idUser;
+    @SerializedName("nomC")
+    @Expose
+    String name;
+    @SerializedName("prenomC")
+    @Expose
+    String firstname;
+    @SerializedName("loginC")
+    @Expose
+    String email;
+    @SerializedName("mdpC")
+    @Expose
+    String password;
+    private User[] users;
+
+    String phone;
+    public User(){
+
     }
-    public User(String name, String firstname, String email, String password, String phone) {
+
+    public User(int idUser,String name, String firstname, String email, String password) {
+        this.idUser=idUser;
         this.name = name;
         this.firstname = firstname;
         this.email = email;
         this.password = password;
-        this.phone = phone;
+
+    }
+    public User(String name, String firstname, String email, String password) {
+        this.name = name;
+        this.firstname = firstname;
+        this.email = email;
+        this.password = password;
     }
 
     public int getIdUser() {
@@ -69,5 +87,17 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", name='" + name + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }

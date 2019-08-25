@@ -75,7 +75,7 @@ public class ProfilFragment extends Fragment {
         Button menuButton = (Button)view.findViewById(R.id.button);
         menuButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                applyChange(new User(1,"test","test","test@test.fr","0666666666","TEST"));
+                applyChange(new User(1,"test","test","test@test.fr","TEST"));
             }
         });
         return view;

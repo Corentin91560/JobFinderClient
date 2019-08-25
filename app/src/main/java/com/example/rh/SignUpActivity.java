@@ -29,7 +29,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void GoToLogIn(View view) {
-        ApiCaller caller = new ApiCaller();
 
         EditText Name = (EditText) findViewById(R.id.NameET);
         EditText FirstName = (EditText) findViewById(R.id.FirstNameET);
@@ -41,9 +40,8 @@ public class SignUpActivity extends AppCompatActivity {
 
             int valideForm;
             //call api pour nouveau user
-            User user = new User(Name.getText().toString(), FirstName.getText().toString(), Email.getText().toString(), Password.getText().toString(), Phone.getText().toString());
+            User user = new User(Name.getText().toString(), FirstName.getText().toString(), Email.getText().toString(), Password.getText().toString());
 
-            caller.Createuser(user);
 
             valideForm = checkForm(user);
             if (valideForm== 0){
