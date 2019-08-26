@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".SignInUpActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorbakcground"
+        app:srcCompat="@mipmap/ic_launcher" />
+
     <Button
         android:id="@+id/sign_in"
 
@@ -15,6 +21,8 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_button"
         android:onClick="goToSignIn"
+        android:textColor="@color/colortext"
+
         android:text="@string/sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
@@ -25,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="20dp"
+        android:textColor="@color/colortext"
 
         android:background="@drawable/rounded_button"
         android:onClick="goToSignUp"

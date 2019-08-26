@@ -20,11 +20,13 @@ import com.example.rh.fragment.ApplicationFragment;
 import com.example.rh.fragment.HomeFragment;
 import com.example.rh.fragment.ProfilFragment;
 import com.example.rh.fragment.ProposalFragment;
+import com.example.rh.fragment.SearchCriteriaFragment;
 import com.example.rh.fragment.SearchFragment;
 
 public class FragmentManagerActivity extends AppCompatActivity
         implements
         SearchFragment.OnFragmentInteractionListener,
+        SearchCriteriaFragment.OnFragmentInteractionListener,
         ProfilFragment.OnFragmentInteractionListener,
         HomeFragment.OnFragmentInteractionListener,
         ApplicationFragment.OnFragmentInteractionListener,
@@ -111,7 +113,7 @@ public class FragmentManagerActivity extends AppCompatActivity
         Fragment fragment = null;
 
         if (id == R.id.nav_search) {
-            fragment = new SearchFragment();
+            fragment = new SearchCriteriaFragment();
             setTitle("Search");
         }else if (id == R.id.nav_profil){
             fragment = new ProfilFragment();
