@@ -613,6 +613,7 @@ color bright_foreground_inverse_material_dark
 color bright_foreground_inverse_material_light
 color bright_foreground_material_dark
 color bright_foreground_material_light
+color btncolor
 color button_material_dark
 color button_material_light
 color cardview_dark_background
@@ -622,6 +623,8 @@ color cardview_shadow_start_color
 color colorAccent
 color colorPrimary
 color colorPrimaryDark
+color colorbakcground
+color colortext
 color design_bottom_navigation_shadow_color
 color design_default_color_primary
 color design_default_color_primary_dark
@@ -1057,6 +1060,7 @@ drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
 id CTRL
+id CompagnieNameTV
 id EmailET
 id EmailTV
 id FUNCTION
@@ -1069,6 +1073,7 @@ id PasswordET
 id PasswordTV
 id PhoneET
 id PhoneTV
+id RVsearchjob
 id SHIFT
 id SYM
 id action0
@@ -1106,7 +1111,10 @@ id beginning
 id blocking
 id bottom
 id button
+id buttonEnterprise
+id buttonJob
 id buttonPanel
+id buttonTag
 id cancel_action
 id center
 id center_horizontal
@@ -1171,6 +1179,7 @@ id info
 id invisible
 id italic
 id item_touch_helper_previous_elevation
+id labelJobTV
 id labeled
 id largeLabel
 id left
@@ -1178,6 +1187,7 @@ id line1
 id line3
 id listMode
 id list_item
+id locateTV
 id logInButton
 id loginTextView
 id masked
@@ -1213,6 +1223,7 @@ id pin
 id progress_circular
 id progress_horizontal
 id radio
+id rememberSW
 id returnButton
 id right
 id right_icon
@@ -1228,6 +1239,7 @@ id scrollView
 id scrollable
 id search_badge
 id search_bar
+id search_btn
 id search_button
 id search_close_btn
 id search_edit_frame
@@ -1236,6 +1248,7 @@ id search_mag_icon
 id search_plate
 id search_src_text
 id search_voice_btn
+id searchcritera
 id select_dialog_listview
 id selected
 id shortcut
@@ -1279,6 +1292,7 @@ id textView4
 id textView5
 id textView6
 id textView7
+id textView8
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1374,11 +1388,16 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout fragment_application
+layout fragment_company
+layout fragment_cv
 layout fragment_home
+layout fragment_job
 layout fragment_profil
 layout fragment_proposal
 layout fragment_search
+layout fragment_search_criteria
 layout fragment_settings
+layout item_job_offer
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout nav_header_home

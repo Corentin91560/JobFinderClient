@@ -1,4 +1,4 @@
-#Fri Aug 23 16:20:03 CEST 2019
+#Tue Aug 27 11:46:49 CEST 2019
 base.0=/Users/cpuser/Documents/Perso/android/RH/app/build/intermediates/transforms/dexMerger/debug/8
 path.0=classes.dex
 renamed.0=classes.dex

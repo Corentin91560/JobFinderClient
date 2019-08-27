@@ -4,11 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.rh.JobAdapter;
 import com.example.rh.R;
+import com.example.rh.models.Job;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,6 +34,7 @@ public class SearchFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ArrayList<Job> jobs;
 
     private OnFragmentInteractionListener mListener;
 
@@ -60,13 +67,25 @@ public class SearchFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        RecyclerView rvJob = (RecyclerView) view.findViewById(R.id.RVsearchjob);
+
+        // Initialize contacts
+        jobs = Job.createContactsList(10);
+        // Create adapter passing in the sample user data
+        JobAdapter adapter = new JobAdapter(jobs);
+        // Attach the adapter to the recyclerview to populate items
+        rvJob.setAdapter(adapter);
+        // Set layout manager to position the items
+        rvJob.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
