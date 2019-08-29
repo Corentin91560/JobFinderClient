@@ -42,6 +42,7 @@ public class Job {
 
         for (int i = 1; i <= numContacts; i++) {
             jobs.add(new Job("Dev Android","87654","TEST"));
+            jobs.add(new Job("test","87654","TEST"));
         }
 
         return jobs;

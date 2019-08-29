@@ -58,7 +58,7 @@ public class SignInActivity extends AppCompatActivity {
         }else{
             clearPreferences();
         }
-        //loginuser(log.getText().toString(),password.getText().toString());
+        loginuser(log.getText().toString(),password.getText().toString());
         Intent intent = new Intent(this, FragmentManagerActivity.class);
         startActivity(intent);
     }

@@ -78,6 +78,24 @@ public class SearchCriteriaFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+        Button tagsearch = (Button) view.findViewById(R.id.buttonTag);
+        tagsearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame,new SearchFragment());
+                fragmentTransaction.commit();
+            }
+        });
+        Button companysearch = (Button) view.findViewById(R.id.buttonEnterprise);
+        companysearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame,new SearchFragment());
+                fragmentTransaction.commit();
+            }
+        });
         return view;
 
 

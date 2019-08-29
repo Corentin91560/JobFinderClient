@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.rh.R;
 import com.example.rh.models.Job;
 
 import java.util.ArrayList;
+import java.util.logging.Filter;
 
 
 /**
@@ -35,6 +37,7 @@ public class SearchFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     ArrayList<Job> jobs;
+    ArrayList<Job> searchedjobs = new ArrayList<Job>();
 
     private OnFragmentInteractionListener mListener;
 
@@ -79,8 +82,15 @@ public class SearchFragment extends Fragment {
 
         // Initialize contacts
         jobs = Job.createContactsList(10);
+        Log.e("test", "onCreateView: ok" + jobs.size());
+        for(int i =0;i<jobs.size();i++){
+            /**if (jobs.get(i).getLabel().contains("te")){
+                searchedjobs.set(i,jobs.get(i));
+                Log.e("test", "onCreateView: ok" );
+            }**/
+        }
         // Create adapter passing in the sample user data
-        JobAdapter adapter = new JobAdapter(jobs);
+        JobAdapter adapter = new JobAdapter(searchedjobs);
         // Attach the adapter to the recyclerview to populate items
         rvJob.setAdapter(adapter);
         // Set layout manager to position the items
@@ -125,4 +135,5 @@ public class SearchFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(String title);
     }
+    
 }
