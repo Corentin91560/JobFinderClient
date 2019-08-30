@@ -1,20 +1,32 @@
 package com.example.rh;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.rh.models.Job;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
+public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> implements Filterable {
 
+    Context c;
+    ArrayList<Job> mJob,filterList;
+    CustomFilter filter;
+    public JobAdapter(Context ctx,ArrayList<Job> players)
+    {
+        this.c=ctx;
+        this.mJob=players;
+        this.filterList=players;
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -37,12 +49,20 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         TextView labeltv = viewHolder.labeljobTV;
         labeltv.setText(contact.getLabel());
 
-
     }
 
     @Override
     public int getItemCount() {
         return mJob.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        if(filter==null)
+        {
+            filter=new CustomFilter(filterList,this);
+        }
+        return filter;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -64,11 +84,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
             CompagnieNameTV = (TextView) itemView.findViewById(R.id.CompagnieNameTV);
         }
     }
-    private List<Job> mJob;
 
     // Pass in the contact array into the constructor
-    public JobAdapter(List<Job> contacts) {
-        mJob = contacts;
-    }
 
 }

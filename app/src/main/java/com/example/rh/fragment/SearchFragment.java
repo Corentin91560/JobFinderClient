@@ -6,17 +6,21 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 
 import com.example.rh.JobAdapter;
 import com.example.rh.R;
 import com.example.rh.models.Job;
 
 import java.util.ArrayList;
-import java.util.logging.Filter;
 
 
 /**
@@ -27,7 +31,7 @@ import java.util.logging.Filter;
  * Use the {@link SearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements SearchView.OnQueryTextListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -37,7 +41,8 @@ public class SearchFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     ArrayList<Job> jobs;
-    ArrayList<Job> searchedjobs = new ArrayList<Job>();
+    private SearchView search;
+    private JobAdapter adapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,6 +71,8 @@ public class SearchFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -76,25 +83,23 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         // Inflate the layout for this fragment
         RecyclerView rvJob = (RecyclerView) view.findViewById(R.id.RVsearchjob);
+        search = (SearchView) view.findViewById(R.id.action_search);
+
 
         // Initialize contacts
         jobs = Job.createContactsList(10);
         Log.e("test", "onCreateView: ok" + jobs.size());
-        for(int i =0;i<jobs.size();i++){
-            /**if (jobs.get(i).getLabel().contains("te")){
-                searchedjobs.set(i,jobs.get(i));
-                Log.e("test", "onCreateView: ok" );
-            }**/
-        }
         // Create adapter passing in the sample user data
-        JobAdapter adapter = new JobAdapter(searchedjobs);
+        final JobAdapter adapter = new JobAdapter(this.getContext(),jobs);
         // Attach the adapter to the recyclerview to populate items
         rvJob.setAdapter(adapter);
         // Set layout manager to position the items
         rvJob.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
         return view;
     }
 
@@ -122,6 +127,18 @@ public class SearchFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        Log.e("re", "onQueryTextSubmit: "+s );
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        Log.e("re", "onQueryTextSubmit: "+s );
+        return false;
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -135,5 +152,36 @@ public class SearchFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(String title);
     }
+    public void onCreateOptionsMenu (Menu menu, MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.findItem(R.id.action_search).setVisible(false);
+        menu.clear();
+        Log.e("tete", "onCreateOptionsMenu: ");
+        inflater.inflate(R.menu.home, menu);
+
+    }
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+
+        MenuItem mSearchMenuItem = menu.findItem(R.id.action_search);
+        android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) mSearchMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+
+        if(mSearchMenuItem!=null)
+            mSearchMenuItem.setVisible(true);
+    }
+
     
 }
